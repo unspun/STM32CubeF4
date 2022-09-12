@@ -6,7 +6,7 @@ message(STATUS "Set STM32F4XX_HAL_CONF_FILE=${STM32F4XX_HAL_CONF_FILE}")
 # Example standard build target
 add_subdirectory(../ stm32f413xx_bsp)
 target_include_directories(stm32f413xx_bsp
-    PRIVATE
+    PUBLIC
     inc/
 )
 add_library(test_build
@@ -22,7 +22,7 @@ target_link_libraries(test_build
 set(STM32F4XX_HAL_VECTOR_OFFSET 0x20000)
 add_subdirectory(../ stm32f413xx_bsp_offset)
 target_include_directories(stm32f413xx_bsp_offset
-    PRIVATE
+    PUBLIC
     inc/
 )
 add_library(offset_test_build

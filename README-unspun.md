@@ -18,6 +18,13 @@ Example:
 ```
 add_subdirectory(../ stm32f413xx_bsp)
 ```
+4. Add directory containing the HAL configuration to the library build. Example:
+```
+target_include_directories(stm32f413xx_bsp
+    PUBLIC
+    inc/
+)
+```
 
 Also see the test_cmake folder for working example. 
 
