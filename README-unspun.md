@@ -8,10 +8,14 @@ Example:
 ```
 set(STM32F4XX_HAL_VECTOR_OFFSET 0x20000)
 ```
-2. Call `unspun_add_stm32f4_hal` with the desired target name and the location of the configuration file. 
+2. Call `unspun_add_stm32f4_hal` with the desired target name and the location of the configuration file.
 Example:
 ```
-unspun_add_stm32f4_hal(stm32f413xx_bsp, ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+unspun_add_stm32f4_hal(stm32f413xx_bsp ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+```
+Optionally to include the USB CDC library with the build, add the ENABLE_USB_DEVICE_CDC option at the end of the function call. Example:
+```
+unspun_add_stm32f4_hal(stm32f413xx_bsp ${CMAKE_CURRENT_SOURCE_DIR}/inc ENABLE_USB_DEVICE_CDC)
 ```
 
 Also see the test_cmake folder for working example. 
