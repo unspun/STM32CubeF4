@@ -119,6 +119,7 @@
 #define GPIO_AF8_USART6        ((uint8_t)0x08)  /* USART6 Alternate Function mapping */
 #define GPIO_AF8_UART7         ((uint8_t)0x08)  /* UART7 Alternate Function mapping  */
 #define GPIO_AF8_UART8         ((uint8_t)0x08)  /* UART8 Alternate Function mapping  */
+#define GPIO_AF8_CAN1          ((uint8_t)0x08)  /* CAN1 Alternate Function mapping   */
 
 /** 
   * @brief   AF 9 selection 
