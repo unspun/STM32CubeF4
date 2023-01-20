@@ -664,6 +664,15 @@ function(unspun_add_stm32f4_hal target_name hal_config_folder)
         STM32F413xx
     )
 
+    # Adding compile options to the STM32CubeF4
+    # Current version of c++ throws warning that |= operator is deprecated
+    # This compile option suppresses that warning
+    target_compile_options(${target_name}
+        PUBLIC
+        $<$<COMPILE_LANGUAGE:CXX>:-Wno-volatile>
+    )
+
+
     # To build this library offset into flash, set STM32F4XX_HAL_VECTOR_OFFSET variable equal
     # to the desired offset using 0xFFFF notation
     if(DEFINED STM32F4XX_HAL_VECTOR_OFFSET)
