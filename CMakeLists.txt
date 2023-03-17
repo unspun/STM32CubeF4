@@ -2,14 +2,13 @@ cmake_minimum_required(VERSION 3.14)
 
 set(stm32f4_internal_dir ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
 
-function(unspun_add_stm32f4_hal target_name hal_config_folder)
+function(unspun_add_stm32f4_hal target_name hal_config_folder hal_sources hal_includes)
 
     set(DRIVER_FOLDER ${stm32f4_internal_dir}/Drivers/STM32F4xx_HAL_Driver)
     set(MIDDLEWARE_FOLDER ${stm32f4_internal_dir}/Middlewares/ST)
     set(CMSIS_FOLDER ${stm32f4_internal_dir}/Drivers/CMSIS)
     set(CMSIS_DEVICE_FOLDER ${CMSIS_FOLDER}/Device/ST/STM32F4xx)
     set(HAL_CONFIG_FILE ${hal_config_folder}/stm32f4xx_hal_conf.h)
-    set(HAL_SYSTEM_FILE ${hal_config_folder}/system_stm32f4xx.c)
 
     # Each project must implement its own stm32f4xx_hal_conf.h and set the variable hal_config_folder
     # before including this subdirectory. A template for this file can be found here: 
@@ -53,15 +52,11 @@ function(unspun_add_stm32f4_hal target_name hal_config_folder)
         ${DRIVER_FOLDER}/Src/stm32f4xx_ll_utils.c 
     )
 
-    # Add system file
-    if(EXISTS ${HAL_SYSTEM_FILE})
-        target_sources(${target_name}
-            PRIVATE
-            ${HAL_SYSTEM_FILE}
-        )
-    else()
-        message(FATAL_ERROR "HAL_SYSTEM_FILE must be defined as an existing path, cannot find path: ${HAL_SYSTEM_FILE}")
-    endif()    
+    # Add external source file
+    target_sources(${target_name}
+        PRIVATE
+        ${hal_sources}
+    )
     
     # Add sources depending on which modules are enabled
     # ---------START MODULE DEFINITIONS--------------
@@ -623,26 +618,7 @@ function(unspun_add_stm32f4_hal target_name hal_config_folder)
             target_include_directories(${target_name}
                 PUBLIC
                 ${MIDDLEWARE_FOLDER}/STM32_USB_Device_Library/Class/CDC/Inc
-            )
-
-            # Add USB config files
-            if(EXISTS ${hal_config_folder}/usbd_conf.c)
-                target_sources(${target_name}
-                    PRIVATE
-                    ${hal_config_folder}/usbd_conf.c
-                )
-            else()
-                message(FATAL_ERROR "USB Configuration must be defined as an existing path, cannot find path: ${hal_config_folder}/usbd_conf.c")
-            endif()   
-            
-            if(EXISTS ${hal_config_folder}/usbd_desc.c)
-                target_sources(${target_name}
-                    PRIVATE
-                    ${hal_config_folder}/usbd_desc.c
-                )
-            else()
-                message(FATAL_ERROR "USB Descriptor must be defined as an existing path, cannot find path: ${hal_config_folder}/usbd_conf.c")
-            endif()   
+            )  
         endif()
     endif()
     # ---------END MODULE DEFINITIONS--------------
@@ -654,6 +630,7 @@ function(unspun_add_stm32f4_hal target_name hal_config_folder)
         ${CMSIS_FOLDER}/Include
         ${CMSIS_DEVICE_FOLDER}/Include
         ${hal_config_folder}
+        ${hal_includes}
     )
 
     # Adding compile definitions as public since they are required for any targets that use
