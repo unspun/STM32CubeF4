@@ -20,4 +20,4 @@ unspun_add_stm32f4_hal(stm32f413xx_bsp
 
 # Example vector table offset build target
 set(STM32F4XX_HAL_VECTOR_OFFSET 0x20000)
-unspun_add_stm32f4_hal(stm32f413xx_bsp_offset ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+unspun_add_stm32f4_hal(stm32f413xx_bsp_offset ${CMAKE_CURRENT_SOURCE_DIR}/inc "" "")
