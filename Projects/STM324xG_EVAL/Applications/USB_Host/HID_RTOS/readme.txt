@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the USB Host HID RTOS application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -77,7 +78,7 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_FS" when using USB Full Speed (FS) Core 
 
 It is possible to fine tune needed USB Host features by modifying defines values in USBH configuration
-file “usbh_conf.h” available under the project includes directory, in a way to fit the application
+file "usbh_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:
 - Level of debug: USBH_DEBUG_LEVEL
                   0: No debug messages
@@ -102,7 +103,7 @@ Connectivity, USB_Host, HID, Full Speed, High Speed, Joystick, Mouse, Keyboard, 
   - USB_Host/HID_RTOS/Src/menu.c                  HID State Machine
   - USB_Host/HID_RTOS/Src/usbh_conf.c             General low level driver configuration
   - USB_Host/HID_RTOS/Src/mouse.c                 HID mouse functions file
-  - USB_Host/HID_RTOS/Src/keybaord.c              HID keyboard functions file
+  - USB_Host/HID_RTOS/Src/keyboard.c              HID keyboard functions file
   - USB_Host/HID_RTOS/Inc/main.h                  Main program header file
   - USB_Host/HID_RTOS/Inc/stm32f4xx_it.h          Interrupt handlers header file
   - USB_Host/HID_RTOS/Inc/lcd_log_conf.h          LCD log configuration file
@@ -136,5 +137,5 @@ In order to make the program work, you must do the following :
    - STM324xG-EVAL_USBH-FS: to configure the project for STM32F4xx devices using USB OTG FS peripheral
  - Run the application
  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

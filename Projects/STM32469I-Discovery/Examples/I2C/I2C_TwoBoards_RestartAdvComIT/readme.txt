@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the I2C_TwoBoards_RestartAdvComIT I2C example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -41,7 +42,7 @@ in interrupt mode and with restart condition.
   |_STM32F469xx_____________|                      |_____________STM32F469xx_|
 
 This example shows how to configure GPIO, DMA and I2C peripherals using 
-2 STM32469I-DISCOVERY boards for exchanging some datas
+2 STM32469I-DISCOVERY boards for exchanging some data
 between an I2C Master device using Interrupt mode
 and an I2C Slave device using Interrupt mode through the STM32F4xx I2C HAL API.
 
@@ -59,7 +60,7 @@ The User push-button is used to initiate a communication between Master device t
 User can initiate a new communication after each previous transfer completed.
 
 The I2C communication is then initiated.
-The project is splitted in two parts the Master Board and the Slave Board
+The project is split in two parts the Master Board and the Slave Board
 - Master Board
   The HAL_I2C_Master_Sequential_Transmit_IT() and the HAL_I2C_Master_Sequential_Receive_IT() functions 
   allow respectively the transmission and the reception of a predefined data buffer
@@ -79,7 +80,7 @@ On Master board side:
 
 This action initiate a write request by Master through HAL_I2C_Master_Sequential_Transmit_IT() or a write then read request
 through HAL_I2C_Master_Sequential_Transmit_IT() then HAL_I2C_Master_Sequential_Receive_IT() routine depends on Command Code type.
-Initialy at power on Slave device through Interrupt "Listen" the I2C bus to perform an acknowledge of Match Address when necessary.
+Initially at power on Slave device through Interrupt "Listen" the I2C bus to perform an acknowledge of Match Address when necessary.
 This "Listen" action is initiated by calling HAL_I2C_EnableListen_IT().
 
 Command code type is decomposed in two categories :
@@ -107,7 +108,7 @@ The STOP condition generate a STOP interrupt and initiate the end of reception o
 Thanks to HAL_I2C_ListenCpltCallback(), Slave is informed of the end of Communication with Master
 and "Listen" mode is also terminated.
 
-STM32469I-DISCOVERY board's LEDs can be used to monitor the transfer status :
+STM32469I-DISCOVERY boards LEDs can be used to monitor the transfer status :
 Slave board side only :
    - LED4 is turned ON when an Address match code event is acknowledge.
    - LED2 is turned ON when the reception process is completed.
@@ -129,9 +130,13 @@ Depending of IDE, to watch content of Terminal I/O note that
  - When resorting to MDK-ARM KEIL IDE:
  Command Code is displayed on debugger as follows: View --> Serial Viewer --> Debug (printf) Viewer
  
-- When resorting to AC6 SW4STM32 IDE:
- In Debug configuration window\ Startup, in addition to "monitor reset halt" add the command "monitor arm semihosting enable"
+ - When resorting to STM32CubeIDE:
  Command Code is displayed on debugger as follows: Window--> Show View--> Console.
+ 
+ In Debug configuration : 
+ 
+    - Window\Debugger, select the Debug probe : ST-LINK(OpenOCD)
+    - Window\Startup,add the command "monitor arm semihosting enable"
 
 2- Request Command code :
     a. Type of command which need a specific data answer from Slave Device.
@@ -150,7 +155,7 @@ I2C1 IRQ Handler routine is then calling HAL_I2C_AddrCallback() which check Addr
 to call the correct HAL_I2C_Slave_Sequential_Receive_IT() function.
 This will allow Slave to enter in receiver mode and then acknowledge Master to send the Command code bytes through Interrupt.
 The Command code data is received and treated byte per byte through HAL_I2C_SlaveRxCpltCallback() in Slave side.
-If data received match with a Internal Command Code, set the associated index, which will use for Tranmission process when requested by Master
+If data received match with a Internal Command Code, set the associated index, which will use for Transmission process when requested by Master
 
 And so in Master side, each time the Slave acknowledge the byte received,
 Master transfer the next data from flash memory buffer to I2C1 TXDR register until "Request Command code" transfer completed.
@@ -167,7 +172,7 @@ The STOP condition generate a STOP interrupt and initiate the end of reception o
 Thanks to HAL_I2C_ListenCpltCallback(), Slave is informed of the end of Communication with Master
 and "Listen" mode is also terminated.
 
-STM32469I-DISCOVERY board's LEDs can be used to monitor the transfer status in both side:
+STM32469I-DISCOVERY boards LEDs can be used to monitor the transfer status in both side:
 Slave board side :
    - LED4 is turned ON when an Address match code event is acknowledge.
    - LED2 is turned ON when the reception process is completed.
@@ -190,12 +195,15 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
  - When resorting to MDK-ARM KEIL IDE:
  Command Code is displayed on debugger as follows: View --> Serial Viewer --> Debug (printf) Viewer
  
-- When resorting to AC6 SW4STM32 IDE:
- In Debug configuration window\ Startup, in addition to "monitor reset halt" add the command "monitor arm semihosting enable"
+ - When resorting to STM32CubeIDE:
  Command Code is displayed on debugger as follows: Window--> Show View--> Console.
- the Terminal I/O.
+ 
+ In Debug configuration : 
+ 
+    - Window\Debugger, select the Debug probe : ST-LINK(OpenOCD)
+    - Window\Startup,add the command "monitor arm semihosting enable"
 
- @note I2Cx instance used and associated resources can be updated in "main.h"
+@note I2Cx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -249,5 +257,5 @@ In order to make the program work, you must do the following :
     o Comment "#define MASTER_BOARD" and load the project in Slave Board
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

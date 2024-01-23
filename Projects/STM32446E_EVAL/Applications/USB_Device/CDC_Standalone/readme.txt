@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the USB Device CDC application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -27,7 +28,7 @@ This is a typical application on how to use the STM32F446xx USB OTG Device perip
 behaves as a USB-to-RS232 bridge following the Virtual COM Port (VCP) implementation.
  - On one side, the STM32 exchanges data with a PC host through USB interface in Device mode.
  - On the other side, the STM32 exchanges data with other devices (same host, other host,
-   other devices…) through the UART interface (RS232).
+   other devices...) through the UART interface (RS232).
 
 At the beginning of the main program the HAL_Init() function is called to reset all the peripherals,
 initialize the Flash interface and the systick. The user is provided with the SystemClock_Config()
@@ -36,9 +37,9 @@ internally a 48-MHz clock which is coming from a specific output of two PLLs PLL
 In the High Speed (HS) mode the USB clock (60 MHz) is driven by the ULPI.
 
 The 48 MHz clock for the USB FS can be derived from one of the two following sources:
-  – PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL VCO clock must be programmed
+  â€“ PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL VCO clock must be programmed
     to output 336 MHz frequency (USBCLK = PLLVCO/PLLQ).
-  – PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI VCO clock must be programmed
+  â€“ PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI VCO clock must be programmed
     to output 384 MHz frequency (USBCLK = PLLSAIVCO/PLLSAIP).
 
 When the VCP application is started, the STM32 MCU is enumerated as serial communication port and is
@@ -179,5 +180,5 @@ In order to make the program work, you must do the following :
  - Find out the number of the COM port assigned to the STM32 CDC device
  - Open a serial terminal application and start the communication
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

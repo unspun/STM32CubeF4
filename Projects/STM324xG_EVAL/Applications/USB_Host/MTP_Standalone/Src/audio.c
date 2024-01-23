@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -110,7 +109,7 @@ AUDIO_ErrorTypeDef AUDIO_Process(void)
 {
   uint32_t bytesread, elapsed_time; 
   static uint32_t prev_elapsed_time = 0xFFFFFFFF;
-  uint8_t str[10];
+  uint8_t str[14];
   AUDIO_ErrorTypeDef error_state = AUDIO_ERROR_NONE;  
   
   switch(audio_state)
@@ -282,7 +281,7 @@ void AUDIO_PlaybackProbeKey(JOYState_TypeDef state)
   */
 static AUDIO_ErrorTypeDef AUDIO_GetFileInfo(uint16_t file_idx, WAV_InfoTypedef *info)
 {
-  uint8_t str [FILE_NAME_SIZE + 20];  
+  uint8_t str [FILE_NAME_SIZE + 26];  
   uint8_t fname [FILE_NAME_SIZE];    
   uint32_t bytesread;
   uint32_t duration;
@@ -359,5 +358,3 @@ void BSP_AUDIO_OUT_HalfTransfer_CallBack(void)
 void BSP_AUDIO_OUT_Error_CallBack(void)
 {
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -9,29 +9,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -64,7 +47,7 @@ In-Application Programming, IAP, USART, Binary, flash
 
  - "IAP/IAP_Main/EWARM": contains pre-configured project for EWARM toolchain
  
- - "IAP/IAP_Main/SW4STM32": contains preconfigured project for SW4STM32 toolchain (main program)
+ - "IAP/IAP_Main/STM32CubeIDE": contains preconfigured project for STM32CubeIDE toolchain (main program)
 
  - "IAP/IAP_Main/src": contains the IAP firmware source files
     - IAP/IAP_Main/src/main.c              Main program
@@ -189,11 +172,11 @@ In order to load the IAP code, you have do the following:
       - Load project image: Debug->Start/Stop Debug Session
       - Run program: Debug->Run (F5)
       
-   - System Workbench for STM32: 
-      - Open System Workbench for STM32 toolchain
-      - Browse to the SW4STM32 workspace directory, select the project (.project file in \IAP_Main\SW4STM32 \STM324xG-EVAL directory).
+   - STM32CubeIDE: 
+      - Open STM32CubeIDE toolchain
+      - Browse to the STM32CubeIDE workspace directory, select the project (.project file in \IAP_Main\STM32CubeIDE \STM324xG-EVAL directory).
       - Rebuild all project files: Select the project in the "Project explorer" window then click on Project->build project menu.
       - Run program: Run->Debug
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

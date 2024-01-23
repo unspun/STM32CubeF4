@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the FatFs with USB disk drive in RTOS mode application
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -51,7 +52,7 @@ access to FAT volume, when using FatFs APIs. Otherwise, user can check if the
 written text file is available on the USB disk.
 
 It is possible to fine tune needed FatFs features by modifying defines values 
-in FatFs configuration file “ffconf.h” available under the project includes 
+in FatFs configuration file "ffconf.h" available under the project includes 
 directory, in a way to fit the application requirements. 
 
 STM32F412G-Discovery's LEDs can be used to monitor the application status:
@@ -86,7 +87,7 @@ FreeRTOS, RTOS
   - FatFs/FatFs_USBDisk_RTOS/Inc/usbh_diskio_dma.h              FatFS usbh diskio driver header file
   - FatFs/FatFs_USBDisk_RTOS/Inc/ffconf.h                       FAT file system module configuration file   
   - FatFs/FatFs_USBDisk_RTOS/Inc/usbh_conf.h                    USB Host low level driver configuration file
-  - FatFs/FatFs_USBDisk_RTOS/Inc/FreeRTOSConfig.h               FreeRTOS configurtion file
+  - FatFs/FatFs_USBDisk_RTOS/Inc/FreeRTOSConfig.h               FreeRTOS configuration file
   - FatFs/FatFs_USBDisk_RTOS/Src/stm32f4xx_it.c                 Interrupt handlers
   - FatFs/FatFs_USBDisk_RTOS/Src/main.c                         Main program
   - FatFs/FatFs_USBDisk_RTOS/Src/usbh_diskio_dma.c              FatFS usbh diskio driver implementation
@@ -114,5 +115,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the application
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

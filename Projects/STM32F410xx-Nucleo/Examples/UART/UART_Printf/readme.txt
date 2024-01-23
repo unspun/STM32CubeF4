@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the UART Printf example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -25,10 +26,10 @@ The UART outputs a message on the HyperTerminal.
 
 The STM32 Nucleo boards integrate the ST-LINK/V2.1 interfacing with the PC and 
 offering the following capabilities:
-  – Debug and programming port
-  – Virtual com port interface
-  – Mass storage interface
-  – USB power management request for more than 100 mA power
+  â€“ Debug and programming port
+  â€“ Virtual com port interface
+  â€“ Mass storage interface
+  â€“ USB power management request for more than 100 mA power
 
 This example shows how to use the STM32 Nucleo boards Virtual Com port feature.
 
@@ -48,7 +49,7 @@ The communication port USART2 is configured as follows:
     - Hardware flow control disabled (RTS and CTS signals)
     - Receive and transmit enabled
 
-To identify the Nucleo board VCP, you have just to perform the follwing actions on
+To identify the Nucleo board VCP, you have just to perform the following actions on
 your Windows PC: 
     - Click Start, and enter Device Manager into the Search field. Click Device Manager .
     - Double-click Ports (COM & LPT).
@@ -112,5 +113,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

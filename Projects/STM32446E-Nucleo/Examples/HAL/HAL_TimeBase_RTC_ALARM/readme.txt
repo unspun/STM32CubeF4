@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the HAL TimeBase RTC Alarm example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -78,7 +79,7 @@ System, RTC Alarm, Time base, HAL
     boards and can be easily tailored to any other supported device 
     and development board.
 
-  - For This example to work properly, a 2.2 µF Capacitor must be present on the board in slot C26.
+  - For This example to work properly, a 2.2 ÂµF Capacitor must be present on the board in slot C26.
 
 @par How to use it ? 
 
@@ -87,5 +88,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

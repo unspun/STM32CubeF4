@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the USB Device CDC application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -27,7 +28,7 @@ This is a typical application on how to use the STM32F4xx USB OTG Device periphe
 behaves as a USB-to-RS232 bridge following the Virtual COM Port (VCP) implementation.
  - On one side, the STM32 exchanges data with a PC host through USB interface in Device mode.
  - On the other side, the STM32 exchanges data with other devices (same host, other host,
-   other devices�) through the UART interface (RS232).
+   other devicesâ€¦) through the UART interface (RS232).
 
 At the beginning of the main program the HAL_Init() function is called to reset all the peripherals,
 initialize the Flash interface and the systick. The user is provided with the SystemClock_Config()
@@ -174,5 +175,5 @@ In order to make the program work, you must do the following :
  - Find out the number of the COM port assigned to the STM32 CDC device
  - Open a serial terminal application and start the communication
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

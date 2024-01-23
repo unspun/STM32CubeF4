@@ -9,29 +9,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2017 STMicroelectronics</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -51,7 +34,7 @@ internally a 48-MHz clock which is coming from a specific output PLL I2S.
 When the application is started, the connected HID device (Mouse/Keyboard) is detected in HID mode and 
 gets initialized. The STM32 MCU behaves as a HID Host, it enumerates the device and extracts VID, PID, 
 manufacturer name, Serial no and product name information and displays it on the LCD screen. 
-This application is based on interacting with a HID device (Mouse/Keyboard) trough a HID routine.
+This application is based on interacting with a HID device (Mouse/Keyboard) through a HID routine.
 
 A menu is displayed and the user can select any operation from the menu using the Joystick buttons:
  - "Start HID" operation starts the appropriate HID application to the attached HID Device.
@@ -81,7 +64,7 @@ For more details about the STM32Cube USB Host library, please refer to UM1720
 @par USB Library Configuration
 
 It is possible to fine tune needed USB Host features by modifying defines values in USBH configuration
-file “usbh_conf.h” available under the project includes directory, in a way to fit the application
+file "usbh_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:
 - Level of debug: USBH_DEBUG_LEVEL
                   0: No debug messages
@@ -103,7 +86,7 @@ Connectivity, USB_Host, HID, Full Speed, High Speed, Joystick, Mouse, Keyboard, 
   - USB_Host/HID_Standalone/Src/menu.c                  HID State Machine
   - USB_Host/HID_Standalone/Src/usbh_conf.c             General low level driver configuration
   - USB_Host/HID_Standalone/Src/mouse.c                 HID mouse functions file
-  - USB_Host/HID_Standalone/Src/keybaord.c              HID keyboard functions file
+  - USB_Host/HID_Standalone/Src/keyboard.c              HID keyboard functions file
   - USB_Host/HID_Standalone/Inc/main.h                  Main program header file
   - USB_Host/HID_Standalone/Inc/stm32f4xx_it.h          Interrupt handlers header file
   - USB_Host/HID_Standalone/Inc/lcd_log_conf.h          LCD log configuration file
@@ -131,5 +114,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the application
  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

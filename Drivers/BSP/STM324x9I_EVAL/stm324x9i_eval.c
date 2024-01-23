@@ -8,32 +8,15 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */ 
+  */
   
 /* File Info: ------------------------------------------------------------------
                                    User NOTE
@@ -62,11 +45,11 @@
   * @{
   */
 /**
- * @brief STM324x9I EVAL BSP Driver version number V3.0.1
+ * @brief STM324x9I EVAL BSP Driver version number V3.0.3
    */
 #define __STM324x9I_EVAL_BSP_VERSION_MAIN   (0x03) /*!< [31:24] main version */
 #define __STM324x9I_EVAL_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
-#define __STM324x9I_EVAL_BSP_VERSION_SUB2   (0x01) /*!< [15:8]  sub2 version */
+#define __STM324x9I_EVAL_BSP_VERSION_SUB2   (0x03) /*!< [15:8]  sub2 version */
 #define __STM324x9I_EVAL_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */ 
 #define __STM324x9I_EVAL_BSP_VERSION         ((__STM324x9I_EVAL_BSP_VERSION_MAIN << 24)\
                                              |(__STM324x9I_EVAL_BSP_VERSION_SUB1 << 16)\
@@ -450,7 +433,7 @@ uint8_t BSP_TS3510_IsDetected(void)
   {
     error = (uint32_t)HAL_I2C_GetError(&heval_I2c);
 
-    /* I2C error occured */
+    /* I2C error occurred */
     I2Cx_Error(TS3510_I2C_ADDRESS);
     
     if(error == HAL_I2C_ERROR_AF)
@@ -624,7 +607,7 @@ static HAL_StatusTypeDef I2Cx_ReadMultiple(uint8_t Addr, uint16_t Reg, uint16_t 
   /* Check the communication status */
   if(status != HAL_OK)
   {
-    /* I2C error occured */
+    /* I2C error occurred */
     I2Cx_Error(Addr);
   }
   return status;    
@@ -926,5 +909,3 @@ HAL_StatusTypeDef EEPROM_IO_IsDeviceReady(uint16_t DevAddress, uint32_t Trials)
 /**
   * @}
   */    
-    
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

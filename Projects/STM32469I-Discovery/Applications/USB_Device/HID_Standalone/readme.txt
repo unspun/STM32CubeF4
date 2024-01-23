@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the USB HID application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -33,9 +34,9 @@ internally a 48-MHz clock which is coming from a specific output of two PLLs PLL
 In the High Speed (HS) mode the USB clock (60 MHz) is driven by the ULPI.
 
 The 48 MHz clock for the USB FS can be derived from one of the two following sources:
-  – PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
+  â€“ PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLVCO/PLLQ).
-  – PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
+  â€“ PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLSAIVCO/PLLSAIP).
  
 This application supports remote wakeup (which is the ability of a USB device to bring a suspended bus back
@@ -70,7 +71,7 @@ For more details about the STM32Cube USB Device library, please refer to UM1734
 "STM32Cube USB Device library".
       
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -108,6 +109,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the application
   
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
- */
-  
+
+   */

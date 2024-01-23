@@ -7,29 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -136,22 +119,20 @@ uint8_t BSP_TS_InitEx(uint16_t ts_SizeX, uint16_t ts_SizeY, uint8_t  orientation
 
   /* Initialize the communication channel to sensor (I2C) if necessary */
   /* that is initialization is done only once after a power up         */
-  ft6x06_ts_drv.Init(I2C_Address);
- 
-  /* Scan FT6x36 TouchScreen IC controller ID register by I2C Read */
-  /* Verify this is a FT6x36, otherwise this is an error case      */
+#if defined (USE_STM32F413H_DISCOVERY_REVE)
+  ft3x67_ts_drv.Init(I2C_Address);
 
-  if(ft6x06_ts_drv.ReadID(TS_I2C_ADDRESS) == FT6x36_ID_VALUE)
+  if(ft3x67_ts_drv.ReadID(TS_I2C_ADDRESS) == FT3X67_ID_VALUE)
   {
-    /* Found FT6x36 : Initialize the TS driver structure */
-    tsDriver = &ft6x06_ts_drv;
+    /* Found FT3x67 : Initialize the TS driver structure */
+    tsDriver = &ft3x67_ts_drv;
 
     I2C_Address    = TS_I2C_ADDRESS;
 
     /* Get LCD chosen orientation */
     if(orientation == TS_ORIENTATION_PORTRAIT)
     {
-      tsOrientation = TS_SWAP_Y;               
+      tsOrientation = TS_SWAP_Y;
     }
     else if(orientation == TS_ORIENTATION_LANDSCAPE_ROT180)
     {
@@ -159,9 +140,8 @@ uint8_t BSP_TS_InitEx(uint16_t ts_SizeX, uint16_t ts_SizeY, uint8_t  orientation
     }
     else
     {
-      tsOrientation = TS_SWAP_XY | TS_SWAP_Y;                 
+      tsOrientation = TS_SWAP_XY | TS_SWAP_Y;
     }
-
 
     if(ts_status == TS_OK)
     {
@@ -173,6 +153,43 @@ uint8_t BSP_TS_InitEx(uint16_t ts_SizeX, uint16_t ts_SizeY, uint8_t  orientation
 
     } /* of if(ts_status == TS_OK) */
   }
+#else /* USE_STM32413H_DISCOVERY */
+  ft6x06_ts_drv.Init(I2C_Address);
+
+  /* Scan TouchScreen IC controller ID register by I2C Read */
+  /* Verify this is a FT6x36 or FT3x67, otherwise this is an error case      */
+  if(ft6x06_ts_drv.ReadID(TS_I2C_ADDRESS) == FT6x36_ID_VALUE)
+  {
+    /* Found FT6x36 : Initialize the TS driver structure */
+    tsDriver = &ft6x06_ts_drv;
+
+    I2C_Address    = TS_I2C_ADDRESS;
+
+    /* Get LCD chosen orientation */
+    if(orientation == TS_ORIENTATION_PORTRAIT)
+    {
+      tsOrientation = TS_SWAP_Y;
+    }
+    else if(orientation == TS_ORIENTATION_LANDSCAPE_ROT180)
+    {
+      tsOrientation = TS_SWAP_XY;
+    }
+    else
+    {
+      tsOrientation = TS_SWAP_XY | TS_SWAP_Y;
+    }
+
+    if(ts_status == TS_OK)
+    {
+      /* Software reset the TouchScreen */
+      tsDriver->Reset(I2C_Address);
+
+      /* Calibrate, Configure and Start the TouchScreen driver */
+      tsDriver->Start(I2C_Address);
+
+    } /* of if(ts_status == TS_OK) */
+  }
+#endif /* USE_STM32F413H_DISCOVERY_REVE */
   else
   {
     ts_status = TS_DEVICE_NOT_FOUND;
@@ -242,7 +259,17 @@ uint8_t BSP_TS_GetState(TS_StateTypeDef *TS_State)
         Raw_x[index] = Raw_y[index]; 
         Raw_y[index] = tmp;
       }
-      
+#if defined (USE_STM32F413H_DISCOVERY_REVE)
+      if(tsOrientation & TS_SWAP_X)
+      {
+        Raw_x[index] = TS_MAX_WIDTH_HEIGHT - 1 - Raw_x[index];
+      }
+
+      if(tsOrientation & TS_SWAP_Y)
+      {
+        Raw_y[index] = TS_MAX_WIDTH_HEIGHT - 1 - Raw_y[index];
+      }
+#else /* USE_STM32413H_DISCOVERY */
       if(tsOrientation & TS_SWAP_X)
       {
         Raw_x[index] = FT_6206_MAX_WIDTH_HEIGHT - 1 - Raw_x[index];
@@ -252,7 +279,7 @@ uint8_t BSP_TS_GetState(TS_StateTypeDef *TS_State)
       {
         Raw_y[index] = FT_6206_MAX_WIDTH_HEIGHT - 1 - Raw_y[index];
       }
-            
+#endif /* USE_STM32F413H_DISCOVERY_REVE */
       xDiff = Raw_x[index] > _x[index]? (Raw_x[index] - _x[index]): (_x[index] - Raw_x[index]);
       yDiff = Raw_y[index] > _y[index]? (Raw_y[index] - _y[index]): (_y[index] - Raw_y[index]);
 
@@ -269,15 +296,40 @@ uint8_t BSP_TS_GetState(TS_StateTypeDef *TS_State)
 #if (TS_MULTI_TOUCH_SUPPORTED == 1)
 
       /* Get touch info related to the current touch */
+#if defined (USE_STM32F413H_DISCOVERY_REVE)
+      ft3x67_TS_GetTouchInfo(I2C_Address, index, &weight, &area, &event);
+#else /* USE_STM32413H_DISCOVERY */
       ft6x06_TS_GetTouchInfo(I2C_Address, index, &weight, &area, &event);
-
+#endif /* USE_STM32F413H_DISCOVERY_REVE */
       /* Update TS_State structure */
       TS_State->touchWeight[index] = weight;
       TS_State->touchArea[index]   = area;
-
+#if defined (USE_STM32F413H_DISCOVERY_REVE)
       /* Remap touch event */
       switch(event)
       {
+
+        case FT3X67_TOUCH_EVT_FLAG_PRESS_DOWN  :
+          TS_State->touchEventId[index] = TOUCH_EVENT_PRESS_DOWN;
+          break;
+        case FT3X67_TOUCH_EVT_FLAG_LIFT_UP :
+          TS_State->touchEventId[index] = TOUCH_EVENT_LIFT_UP;
+          break;
+        case FT3X67_TOUCH_EVT_FLAG_CONTACT :
+          TS_State->touchEventId[index] = TOUCH_EVENT_CONTACT;
+          break;
+        case FT3X67_TOUCH_EVT_FLAG_NO_EVENT :
+          TS_State->touchEventId[index] = TOUCH_EVENT_NO_EVT;
+          break;
+        default :
+          ts_status = TS_ERROR;
+          break;
+      } /* of switch(event) */
+#else /* USE_STM32413H_DISCOVERY */
+      /* Remap touch event */
+      switch(event)
+      {
+
         case FT6206_TOUCH_EVT_FLAG_PRESS_DOWN  :
           TS_State->touchEventId[index] = TOUCH_EVENT_PRESS_DOWN;
           break;
@@ -294,7 +346,7 @@ uint8_t BSP_TS_GetState(TS_StateTypeDef *TS_State)
           ts_status = TS_ERROR;
           break;
       } /* of switch(event) */
-
+#endif /* USE_STM32F413H_DISCOVERY_REVE */
 #endif /* TS_MULTI_TOUCH_SUPPORTED == 1 */
 
     } /* of for(index=0; index < TS_State->touchDetected; index++) */
@@ -320,6 +372,33 @@ uint8_t BSP_TS_Get_GestureId(TS_StateTypeDef *TS_State)
   uint32_t gestureId = 0;
   uint8_t  ts_status = TS_OK;
 
+#if defined (USE_STM32F413H_DISCOVERY_REVE)
+  /* Get gesture Id */
+  ft3x67_TS_GetGestureID(I2C_Address, &gestureId);
+
+  /* Remap gesture Id to a TS_GestureIdTypeDef value */
+  switch(gestureId)
+  {
+    case FT3X67_GEST_ID_NO_GESTURE :
+      TS_State->gestureId = GEST_ID_NO_GESTURE;
+      break;
+    case FT3X67_GEST_ID_MOVE_UP :
+      TS_State->gestureId = GEST_ID_MOVE_UP;
+      break;
+    case FT3X67_GEST_ID_MOVE_RIGHT :
+      TS_State->gestureId = GEST_ID_MOVE_RIGHT;
+      break;
+    case FT3X67_GEST_ID_MOVE_DOWN :
+      TS_State->gestureId = GEST_ID_MOVE_DOWN;
+      break;
+    case FT3X67_GEST_ID_MOVE_LEFT :
+      TS_State->gestureId = GEST_ID_MOVE_LEFT;
+      break;
+    default :
+      ts_status = TS_ERROR;
+      break;
+  } /* of switch(gestureId) */
+#else /* USE_STM32413H_DISCOVERY */
   /* Get gesture Id */
   ft6x06_TS_GetGestureID(I2C_Address, &gestureId);
 
@@ -351,7 +430,7 @@ uint8_t BSP_TS_Get_GestureId(TS_StateTypeDef *TS_State)
       ts_status = TS_ERROR;
       break;
   } /* of switch(gestureId) */
-
+#endif /* USE_STM32F413H_DISCOVERY_REVE */
   return(ts_status);
 }
 
@@ -421,5 +500,3 @@ __weak void BSP_TS_INT_MspInit(void)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

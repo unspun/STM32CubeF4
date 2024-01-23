@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the code execution from FMC PSRAM memory example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -40,7 +41,7 @@ LED3, and LED4 toggle in this forever loop.
 
 In this example, HCLK is configured at 100 MHz.
 The configuration of the Clock is done in the system_stm32f4xx.c by calling SetSysClk().
-A specefic flashloader is required for the programming of the PSRAM memory.
+A specific flashloader is required for the programming of the PSRAM memory.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
@@ -77,9 +78,9 @@ Memory, FMC, PSRAM, PreInit, Execute, Initialization, Access
 
   - A specific region for the PSRAM memory has been added in the scatter file 
     (STM32F413xx/STM32F423xx for IAR toolchain, 
-    STM32F413H-DISCO.sct for Keil toolchain and linker file for SW4STM32)
+    STM32F413H-DISCO.sct for Keil toolchain and linker file for STM32CubeIDE)
     
-The PSRAM external flash loader is not integrated with supported toolchains, it�s only supported with STM32
+The PSRAM external flash loader is not integrated with supported toolchains, itâ€™s only supported with STM32
 ST-Link Utility V4.0.1
 To load the example, use STM32 ST-Link Utility to program both internal Flash and external PSRAM memory:
 1- Open STM32 ST-Link Utility V4.1.0, click on "External Loader" from the bar menu then check 
@@ -95,5 +96,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the UTILS example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -33,7 +34,7 @@ Then UID, Device ID and Revision ID will be saved in following global variables:
 
 @par Keywords
 
-Syste, Utils, Device info, UID, Device ID, Revision ID, Wafer, Lot number, 
+System, Utils, Device info, UID, Device ID, Revision ID, Wafer, Lot number, 
 
 @par Directory contents 
 
@@ -59,5 +60,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

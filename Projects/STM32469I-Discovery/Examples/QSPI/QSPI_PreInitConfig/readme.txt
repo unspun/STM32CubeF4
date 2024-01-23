@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the code execution from QSPI memory example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -50,11 +51,11 @@ In this example, HCLK is configured at 180 MHz.
       to have correct HAL operation.
 
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
-Memory, QSPI, Erase, Write, DMA, section, memory-mapped mode, PreInit configuration, Jump
+Memory, QUADSPI, Erase, Write, DMA, section, memory-mapped mode, PreInit configuration, Jump
 
 @par Directory contents 
 
@@ -80,7 +81,7 @@ Memory, QSPI, Erase, Write, DMA, section, memory-mapped mode, PreInit configurat
 
   - A specific region for the QSPI memory has been added in the scatter file 
    (STM32F469xx_flash.icf for IAR toolchain, STM32469I-DISCOVERY.sct for Keil toolchain 
-   and STM32F469NIHx_FLASH.ld for SW4STM32 toolchain) in order to map functions in this memory
+   and STM32F469NIHx_FLASH.ld for STM32CubeIDE toolchain) in order to map functions in this memory
 
 @par How to use it ? 
 
@@ -91,5 +92,5 @@ In order to make the program work, you must do the following :
    -> !!! Be careful, don't try to use the toolchain to load the image, it is not able to load some code in QSPI memory !!!
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

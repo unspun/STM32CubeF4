@@ -7,32 +7,15 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* File Info: ------------------------------------------------------------------
                                    User NOTES
@@ -1209,7 +1192,7 @@ __weak void BSP_LCD_ClockConfig(LTDC_HandleTypeDef *hltdc, void *Params)
     */
     if(*(uint32_t *)Params == LCD_MAX_PCLK)
     {
-      /* In case of single layer the bandwidth is arround 160MBytesPerSec ==> theorical PCLK of 40MHz */
+      /* In case of single layer the bandwidth is around 160MBytesPerSec ==> theoretical PCLK of 40MHz */
       /* AMPIRE640480 typical PCLK is 25.16 MHz so the PLLSAI is configured to provide this clock */ 
       /* AMPIRE640480 LCD clock configuration */
       /* PLLSAI_VCO Input = HSE_VALUE/PLL_M = 1 Mhz */
@@ -1220,7 +1203,7 @@ __weak void BSP_LCD_ClockConfig(LTDC_HandleTypeDef *hltdc, void *Params)
     }
     else
     {
-      /* In case of double layers the bandwidth is arround 72MBytesPerSec => 18MHz (<25,16MHz) */
+      /* In case of double layers the bandwidth is around 72MBytesPerSec => 18MHz (<25,16MHz) */
       /* so the PLLSAI is configured to provide this clock */
       /* AMPIRE640480 LCD clock configuration */
       /* PLLSAI_VCO Input = HSE_VALUE/PLL_M = 1 Mhz */
@@ -1466,5 +1449,3 @@ static void LL_ConvertLineToARGB8888(void *pSrc, void *pDst, uint32_t xSize, uin
 /**
   * @}
   */        
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

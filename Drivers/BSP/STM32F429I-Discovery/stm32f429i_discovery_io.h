@@ -7,45 +7,28 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32F429I_DISCOVERY_IO_H
 #define __STM32F429I_DISCOVERY_IO_H
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f429i_discovery.h"
 /* Include IO component driver */
-#include "../Components/stmpe811/stmpe811.h"   
+#include "../Components/stmpe811/stmpe811.h"
 
 /** @addtogroup BSP
   * @{
@@ -62,15 +45,15 @@
 /** @defgroup STM32F429I_DISCOVERY_IO_Exported_Types STM32F429I DISCOVERY IO Exported Types
   * @{
   */
-typedef enum 
+typedef enum
 {
   IO_OK       = 0,
   IO_ERROR    = 1,
   IO_TIMEOUT  = 2
-}IO_StatusTypeDef;
+} IO_StatusTypeDef;
 /**
   * @}
-  */  
+  */
 
 /** @defgroup STM32F429I_DISCOVERY_IO_Exported_Constants STM32F429I DISCOVERY IO Exported Constants
   * @{
@@ -86,14 +69,14 @@ typedef enum
 #define IO_PIN_ALL                   0xFF
 /**
   * @}
-  */  
+  */
 
 /** @defgroup STM32F429I_DISCOVERY_IO_Exported_Macros STM32F429I DISCOVERY IO Exported Macros
   * @{
   */
 /**
   * @}
-  */  
+  */
 
 /** @defgroup STM32F429I_DISCOVERY_IO_Exported_Functions STM32F429I DISCOVERY IO Exported Functions
   * @{
@@ -105,10 +88,6 @@ void     BSP_IO_ConfigPin(uint16_t IoPin, IO_ModeTypedef IoMode);
 void     BSP_IO_WritePin(uint16_t IoPin, uint8_t PinState);
 uint16_t BSP_IO_ReadPin(uint16_t IoPin);
 void     BSP_IO_TogglePin(uint16_t IoPin);
-  
-/**
-  * @}
-  */ 
 
 /**
   * @}
@@ -116,7 +95,11 @@ void     BSP_IO_TogglePin(uint16_t IoPin);
 
 /**
   * @}
-  */ 
+  */
+
+/**
+  * @}
+  */
 
 /**
   * @}
@@ -127,5 +110,3 @@ void     BSP_IO_TogglePin(uint16_t IoPin);
 #endif
 
 #endif /* __STM32F429I_DISCOVERY_IO_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

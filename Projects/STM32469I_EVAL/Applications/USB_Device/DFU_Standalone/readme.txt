@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the USB DFU application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -33,9 +34,9 @@ internally a 48-MHz clock which is coming from a specific output of two PLLs PLL
 In the High Speed (HS) mode the USB clock (60 MHz) is driven by the ULPI.
 
 The 48 MHz clock for the USB FS can be derived from one of the two following sources:
-  – PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
+  â€“ PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLVCO/PLLQ).
-  – PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
+  â€“ PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLSAIVCO/PLLSAIP).
 
 The DFU transactions are based on Endpoint 0 (control endpoint) transfer. All requests and status 
@@ -95,14 +96,14 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_HS" and "USE_USB_HS_IN_FS" when using USB High Speed (HS) Core in FS mode
       
 It is possible to fine tune needed USB Device features by modifying defines values in USBD configuration
-file “usbd_conf.h” available under the project includes directory, in a way to fit the application
+file "usbd_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:      
  - USBD_DFU_APP_DEFAULT_ADD, specifying the address from where user's application will be downloaded.
 
 Device's end address is the end address of the flash memory and it is dependent on the device in use.
 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -166,5 +167,5 @@ In order to make the program work, you must do the following :
    - To run the downloaded application, execute the command "leave the DFU mode" or simply reset the 
      board. 
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

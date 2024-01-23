@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -174,7 +173,7 @@ static ES_WIFI_SecurityType_t ParseSecurity(char* ptr)
 }
 
 /**
-  * @brief  Parses ES module informations and save them in the handle.
+  * @brief  Parses ES module information and save them in the handle.
   * @param  Obj: pointer to module handle
   * @param  ptr: pointer to string
   * @retval None.
@@ -790,7 +789,7 @@ ES_WIFI_Status_t ES_WIFI_GetNetworkSettings(ES_WIFIObject_t *Obj)
 }
 
 /**
-  * @brief  retrn the MAC address of the es module.
+  * @brief  return the MAC address of the es module.
   * @param  Obj: pointer to module handle
   * @param  mac: pointer to the MAC address array.
   * @retval Operation Status.
@@ -811,7 +810,7 @@ ES_WIFI_Status_t ES_WIFI_GetMACAddress(ES_WIFIObject_t *Obj, uint8_t *mac)
 }
 
 /**
-  * @brief  retrn the IP address of the es module.
+  * @brief  return the IP address of the es module.
   * @param  Obj: pointer to module handle
   * @param  mac: pointer to the IP address array.
   * @retval Operation Status.
@@ -1458,5 +1457,3 @@ ES_WIFI_Status_t ES_WIFI_ReceiveData(ES_WIFIObject_t *Obj, uint8_t Socket, uint8
   }
   return ret;
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

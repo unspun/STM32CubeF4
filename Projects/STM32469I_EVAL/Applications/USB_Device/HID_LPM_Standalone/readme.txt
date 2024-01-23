@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the USB HID_LPM application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -37,7 +38,7 @@ On Host L1 resume, STM32 will wakeup from STOP and USB resumes operations.
 You can test L1 suspend/resume, by running the USBCV3.0 chapter9 for USB2.0 devices 
 and select (in debug mode) test "TD9.21: LPM L1 Suspend Resume Test".
 Please note that for running USBCV3.0, you'll need a PC with a USB3.0 (xHCI)
-host controller (please refer to USBCV3.0 documentation for more informations).
+host controller (please refer to USBCV3.0 documentation for more information).
 
 This application is a part of the USB Device Library package using STM32Cube firmware. It describes how to 
 implement the USB Link Power Management (LPM) feature and how it can be used with the selective suspend 
@@ -52,9 +53,9 @@ internally a 48-MHz clock which is coming from a specific output of two PLLs PLL
 In the High Speed (HS) mode the USB clock (60 MHz) is driven by the ULPI.
 
 The 48 MHz clock for the USB FS can be derived from one of the two following sources:
-  – PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
+  â€“ PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLVCO/PLLQ).
-  – PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
+  â€“ PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLSAIVCO/PLLSAIP).
  
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -78,7 +79,7 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_HS" and "USE_USB_HS_IN_FS" when using USB High Speed (HS) Core in FS mode
       
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -135,6 +136,5 @@ In order to make the program work, you must do the following :
  The Low Power management (suspend/resume and Remote wakeup) In HS mode is not yet supported. 
  Only FS and HS-IN-FS mode are supported
   
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
- */
-  
+
+   */

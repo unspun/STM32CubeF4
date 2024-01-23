@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the BSP example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -62,7 +63,7 @@ ANT7-M24LR-A
 
 @par Keywords
 
-BSP, LCD, Touchscreen, PSRAM, DMA, QSPI, Erase, Read, Write, Audio play, Record, MEMS, Audio Codec, DFSDM,
+BSP, LCD, Touchscreen, PSRAM, DMA, QUADSPI, Erase, Read, Write, Audio play, Record, MEMS, Audio Codec, DFSDM,
 I2S, Microphone, Headphones
 
 @par Directory contents 
@@ -86,11 +87,13 @@ I2S, Microphone, Headphones
 @par Hardware and Software environment  
 
   - This example runs on STM32F429xx devices.
-    
-  - This example has been tested with STMicroelectronics STM32F429I-Discovery RevC
-    boards and can be easily tailored to any other supported device 
-    and development board.
+  
+  - This example has been tested with STMicroelectronics STM32F429I-Discovery RevC and RevE
+    boards and can be easily tailored to any other supported device and development board.
 
+  - The default example configuration has been running on STMicroelectronics STM32F429I-Discovery RevC board,
+    and in order to run it on STMicroelectronics STM32F429I-Discovery RevD or RevE boards, please ensure 
+    to add "USE_STM32F429I_DISCOVERY_REVD" define in the toolchain's pre-processor options.
 
 @par How to use it ? 
 
@@ -98,5 +101,5 @@ In order to make the program work, you must do the following :
  - Open your preferred toolchain
  - Rebuild all files and load your image into target memory
  - Run the example
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

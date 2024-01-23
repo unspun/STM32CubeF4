@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -94,8 +93,8 @@ uint8_t pPage[]       = {0x00, 0x00, 0x01, 0xDF}; /*   0 -> 479 */
 uint8_t pSyncLeft[]   = {0x02, 0x15};             /* Scan @ 533 */
 
 TS_StateTypeDef  TS_State = {0};
-uint32_t x1, y1;
-uint32_t x2, y2;       
+uint32_t x2, y2;
+uint32_t x3, y3;       
 uint32_t first_touch;
         
 static uint8_t touch = 0;
@@ -227,23 +226,23 @@ static void LCD_DSI_HorizontalSlider(void)
       first_touch = TS_State.touchX[0];
       touch = 1;
     }
-    x2 = TS_State.touchX[0];
+    x3 = TS_State.touchX[0];
     /* Follows Right ********************************************************/
-    if (first_touch < x2)
+    if (first_touch < x3)
     {
       while(valid_buffer);
       
       if(image_ID == 0)
       {       
-        LL_DrawPicture((uint32_t *)image[MAX_IMAGE_ID], (x2 - first_touch - 800));
+        LL_DrawPicture((uint32_t *)image[MAX_IMAGE_ID], (x3 - first_touch - 800));
       }
       else
       {       
-        LL_DrawPicture((uint32_t *)image[image_ID - 1], (x2 - first_touch - 800));
+        LL_DrawPicture((uint32_t *)image[image_ID - 1], (x3 - first_touch - 800));
       } 
       
       HAL_Delay(80);
-      LL_DrawPicture((uint32_t *)image[image_ID], (x2 - first_touch));
+      LL_DrawPicture((uint32_t *)image[image_ID], (x3 - first_touch));
       HAL_Delay(40);
       valid_buffer = 1;
       HAL_DSI_LongWrite(&hdsi_eval, 0, DSI_DCS_LONG_PKT_WRITE, 2, OTM8009A_CMD_WRTESCN, pSyncLeft);
@@ -256,15 +255,15 @@ static void LCD_DSI_HorizontalSlider(void)
     {
       while(valid_buffer);        
       
-      LL_DrawPicture((uint32_t *)image[image_ID], -(first_touch - x2));
+      LL_DrawPicture((uint32_t *)image[image_ID], -(first_touch - x3));
       HAL_Delay(80);
       if(image_ID == MAX_IMAGE_ID)
       {        
-        LL_DrawPicture((uint32_t *)image[0], (800 - first_touch + x2));
+        LL_DrawPicture((uint32_t *)image[0], (800 - first_touch + x3));
       }
       else
       {  
-        LL_DrawPicture((uint32_t *)image[image_ID + 1], (800 - first_touch + x2));
+        LL_DrawPicture((uint32_t *)image[image_ID + 1], (800 - first_touch + x3));
       }
       HAL_Delay(40);
       
@@ -281,11 +280,11 @@ static void LCD_DSI_HorizontalSlider(void)
     if(touchdetected == 1)
     {
       /* Get X and Y position of the first touch post calibrated */ 
-      x1 = TS_State.touchX[0];
+      x2 = TS_State.touchX[0];
       /* Move Right *********************************************************/
-      if(x1 > first_touch)
+      if(x2 > first_touch)
       {
-        if(x1 > (first_touch + 100))   
+        if(x2 > (first_touch + 100))   
         { 
           if(image_ID > 0)
           {
@@ -298,7 +297,7 @@ static void LCD_DSI_HorizontalSlider(void)
           
           LL_CopyPicture((uint32_t *)image[image_ID], (uint32_t *)(0xC0200000));
           
-          for(counter= (x1 - first_touch -800); counter < 0; counter++)
+          for(counter= (x2 - first_touch -800); counter < 0; counter++)
           {
             while(valid_buffer);     
             counter += 30;
@@ -331,21 +330,21 @@ static void LCD_DSI_HorizontalSlider(void)
         /* Snap Right *******************************************************/
         else
         {
-          for(counter=0; counter < (x1 - first_touch + 1); counter++)
+          for(counter=0; counter < (x2 - first_touch + 1); counter++)
           {
             counter += 10;
-            if(counter < (x1 - first_touch + 1))
+            if(counter < (x2 - first_touch + 1))
             {
               while(valid_buffer);
               if(image_ID == 0)
               {
-                LL_DrawPicture((uint32_t *)image[MAX_IMAGE_ID], (((x1 - first_touch) - counter) - 800));
+                LL_DrawPicture((uint32_t *)image[MAX_IMAGE_ID], (((x2 - first_touch) - counter) - 800));
               }
               else
               {
-                LL_DrawPicture((uint32_t *)image[image_ID - 1], (((x1 - first_touch) - counter) - 800));
+                LL_DrawPicture((uint32_t *)image[image_ID - 1], (((x2 - first_touch) - counter) - 800));
               }
-              LL_DrawPicture((uint32_t *)image[image_ID], ((x1 - first_touch) - counter));
+              LL_DrawPicture((uint32_t *)image[image_ID], ((x2 - first_touch) - counter));
               valid_buffer = 1;
               HAL_DSI_LongWrite(&hdsi_eval, 0, DSI_DCS_LONG_PKT_WRITE, 2, OTM8009A_CMD_WRTESCN, pSyncLeft);
             }
@@ -377,7 +376,7 @@ static void LCD_DSI_HorizontalSlider(void)
       /* Move Left **********************************************************/
       else
       {
-        if(first_touch > (x1 + 100))   
+        if(first_touch > (x2 + 100))   
         {
           if(image_ID < MAX_IMAGE_ID)
           {
@@ -390,7 +389,7 @@ static void LCD_DSI_HorizontalSlider(void)
           
           LL_CopyPicture((uint32_t *)image[image_ID], (uint32_t *)(0xC0200000));
           
-          for(counter=(800 - first_touch + x1); counter > 0; counter--)
+          for(counter=(800 - first_touch + x2); counter > 0; counter--)
           {
             while(valid_buffer);     
             counter -= 30;
@@ -423,21 +422,21 @@ static void LCD_DSI_HorizontalSlider(void)
         /* Snap Left ********************************************************/
         else
         {
-          for(counter=0; counter < (first_touch - x1 + 1); counter++)
+          for(counter=0; counter < (first_touch - x2 + 1); counter++)
           {
             counter += 10;
-            if(counter < (first_touch - x1 + 1))
+            if(counter < (first_touch - x2 + 1))
             {
               while(valid_buffer);
-              LL_DrawPicture((uint32_t *)image[image_ID], (x1 - first_touch + counter));
+              LL_DrawPicture((uint32_t *)image[image_ID], (x2 - first_touch + counter));
               
               if(image_ID == MAX_IMAGE_ID)
               {        
-                LL_DrawPicture((uint32_t *)image[0], ((800 + x1 - first_touch + counter)));     
+                LL_DrawPicture((uint32_t *)image[0], ((800 + x2 - first_touch + counter)));     
               }
               else
               {
-                LL_DrawPicture((uint32_t *)image[image_ID + 1], ((800 + x1 - first_touch + counter)));
+                LL_DrawPicture((uint32_t *)image[image_ID + 1], ((800 + x2 - first_touch + counter)));
               }
               valid_buffer = 1;
               HAL_DSI_LongWrite(&hdsi_eval, 0, DSI_DCS_LONG_PKT_WRITE, 2, OTM8009A_CMD_WRTESCN, pSyncLeft);
@@ -487,24 +486,24 @@ static void LCD_DSI_VerticalSlider(void)
       first_touch = TS_State.touchY[0];
       touch = 1;
     }
-    y2 = TS_State.touchY[0];
+    y3 = TS_State.touchY[0];
     /* Follows Right ********************************************************/
-    if (first_touch < y2)
+    if (first_touch < y3)
     {
       while(valid_buffer);
       
       
       if(image_ID == 0)
       {       
-        LL_DrawPicture((uint32_t *)image[MAX_IMAGE_ID], (y2 - first_touch - 480));
+        LL_DrawPicture((uint32_t *)image[MAX_IMAGE_ID], (y3 - first_touch - 480));
       }
       else
       {       
-        LL_DrawPicture((uint32_t *)image[image_ID - 1], (y2 - first_touch - 480));
+        LL_DrawPicture((uint32_t *)image[image_ID - 1], (y3 - first_touch - 480));
       } 
       
       HAL_Delay(80);
-      LL_DrawPicture((uint32_t *)image[image_ID], (y2 - first_touch));
+      LL_DrawPicture((uint32_t *)image[image_ID], (y3 - first_touch));
       HAL_Delay(40);
       valid_buffer = 1;
       HAL_DSI_LongWrite(&hdsi_eval, 0, DSI_DCS_LONG_PKT_WRITE, 2, OTM8009A_CMD_WRTESCN, pSyncLeft);
@@ -517,15 +516,15 @@ static void LCD_DSI_VerticalSlider(void)
     {
       while(valid_buffer);        
       
-      LL_DrawPicture((uint32_t *)image[image_ID], -(first_touch - y2));
+      LL_DrawPicture((uint32_t *)image[image_ID], -(first_touch - y3));
       HAL_Delay(80);
       if(image_ID == MAX_IMAGE_ID)
       {        
-        LL_DrawPicture((uint32_t *)image[0], (480 - first_touch + y2));
+        LL_DrawPicture((uint32_t *)image[0], (480 - first_touch + y3));
       }
       else
       {  
-        LL_DrawPicture((uint32_t *)image[image_ID + 1], (480 - first_touch + y2));
+        LL_DrawPicture((uint32_t *)image[image_ID + 1], (480 - first_touch + y3));
       }
       HAL_Delay(40);
       
@@ -542,11 +541,11 @@ static void LCD_DSI_VerticalSlider(void)
     if(touchdetected == 1)
     {
       /* Get X and Y position of the first touch post calibrated */ 
-      y1 = TS_State.touchY[0];
+      y2 = TS_State.touchY[0];
       /* Move Right *********************************************************/
-      if(y1 > first_touch)
+      if(y2 > first_touch)
       {
-        if(y1 > (first_touch + 100))   
+        if(y2 > (first_touch + 100))   
         { 
           if(image_ID > 0)
           {
@@ -559,7 +558,7 @@ static void LCD_DSI_VerticalSlider(void)
           
           LL_CopyPicture((uint32_t *)image[image_ID], (uint32_t *)(0xC0200000));
           
-          for(counter= (y1 - first_touch -480); counter < 0; counter++)
+          for(counter= (y2 - first_touch -480); counter < 0; counter++)
           {
             while(valid_buffer);     
             counter += 30;
@@ -592,21 +591,21 @@ static void LCD_DSI_VerticalSlider(void)
         /* Snap Right *******************************************************/
         else
         {
-          for(counter=0; counter < (y1 - first_touch + 1); counter++)
+          for(counter=0; counter < (y2 - first_touch + 1); counter++)
           {
             counter += 10;
-            if(counter < (y1 - first_touch + 1))
+            if(counter < (y2 - first_touch + 1))
             {
               while(valid_buffer);
               if(image_ID == 0)
               {
-                LL_DrawPicture((uint32_t *)image[MAX_IMAGE_ID], (((y1 - first_touch) - counter) - 480));
+                LL_DrawPicture((uint32_t *)image[MAX_IMAGE_ID], (((y2 - first_touch) - counter) - 480));
               }
               else
               {
-                LL_DrawPicture((uint32_t *)image[image_ID - 1], (((y1 - first_touch) - counter) - 480));
+                LL_DrawPicture((uint32_t *)image[image_ID - 1], (((y2 - first_touch) - counter) - 480));
               }
-              LL_DrawPicture((uint32_t *)image[image_ID], ((y1 - first_touch) - counter));
+              LL_DrawPicture((uint32_t *)image[image_ID], ((y2 - first_touch) - counter));
               valid_buffer = 1;
               HAL_DSI_LongWrite(&hdsi_eval, 0, DSI_DCS_LONG_PKT_WRITE, 2, OTM8009A_CMD_WRTESCN, pSyncLeft);
             }
@@ -638,7 +637,7 @@ static void LCD_DSI_VerticalSlider(void)
       /* Move Left **********************************************************/
       else
       {
-        if(first_touch > (y1 + 100))   
+        if(first_touch > (y2 + 100))   
         {
           if(image_ID < MAX_IMAGE_ID)
           {
@@ -651,7 +650,7 @@ static void LCD_DSI_VerticalSlider(void)
           
           LL_CopyPicture((uint32_t *)image[image_ID], (uint32_t *)(0xC0200000));
           
-          for(counter=(480 - first_touch + y1); counter > 0; counter--)
+          for(counter=(480 - first_touch + y2); counter > 0; counter--)
           {
             while(valid_buffer);     
             counter -= 30;
@@ -684,21 +683,21 @@ static void LCD_DSI_VerticalSlider(void)
         /* Snap Left ********************************************************/
         else
         {
-          for(counter=0; counter < (first_touch - y1 + 1); counter++)
+          for(counter=0; counter < (first_touch - y2 + 1); counter++)
           {
             counter += 10;
-            if(counter < (first_touch - y1 + 1))
+            if(counter < (first_touch - y2 + 1))
             {
               while(valid_buffer);
-              LL_DrawPicture((uint32_t *)image[image_ID], (y1 - first_touch + counter));
+              LL_DrawPicture((uint32_t *)image[image_ID], (y2 - first_touch + counter));
               
               if(image_ID == MAX_IMAGE_ID)
               {        
-                LL_DrawPicture((uint32_t *)image[0], ((800 + y1 - first_touch + counter)));     
+                LL_DrawPicture((uint32_t *)image[0], ((800 + y2 - first_touch + counter)));     
               }
               else
               {
-                LL_DrawPicture((uint32_t *)image[image_ID + 1], ((480 + y1 - first_touch + counter)));
+                LL_DrawPicture((uint32_t *)image[image_ID + 1], ((480 + y2 - first_touch + counter)));
               }
               valid_buffer = 1;
               HAL_DSI_LongWrite(&hdsi_eval, 0, DSI_DCS_LONG_PKT_WRITE, 2, OTM8009A_CMD_WRTESCN, pSyncLeft);
@@ -748,7 +747,7 @@ void HAL_DSI_EndOfRefreshCallback(DSI_HandleTypeDef *hdsi)
       
       /* Disable DSI Wrapper */
       __HAL_DSI_WRAPPER_DISABLE(&hdsi_eval);
-      /* Update LTDC configuaration */
+      /* Update LTDC configuration */
       LTDC_LAYER(&hltdc_eval, 0)->CFBAR = LAYER0_ADDRESS + 400 * 4;
       __HAL_LTDC_RELOAD_IMMEDIATE_CONFIG(&hltdc_eval);
       /* Enable DSI Wrapper */
@@ -764,7 +763,7 @@ void HAL_DSI_EndOfRefreshCallback(DSI_HandleTypeDef *hdsi)
       
       /* Disable DSI Wrapper */
       __HAL_DSI_WRAPPER_DISABLE(&hdsi_eval);
-      /* Update LTDC configuaration */
+      /* Update LTDC configuration */
       LTDC_LAYER(&hltdc_eval, 0)->CFBAR = LAYER0_ADDRESS;
       __HAL_LTDC_RELOAD_IMMEDIATE_CONFIG(&hltdc_eval);
       /* Enable DSI Wrapper */
@@ -979,6 +978,7 @@ static uint8_t LCD_Init(void)
 void LTDC_Init(void)
 {
   /* DeInit */
+  hltdc_eval.Instance = LTDC;
   HAL_LTDC_DeInit(&hltdc_eval);
   
   /* LTDC Config */
@@ -1210,5 +1210,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

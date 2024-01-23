@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -40,7 +39,7 @@ uint8_t wtext [] = "USB Host Library : Mass Storage Example";
   */
 void MSC_File_Operations(void)
 {
-  uint16_t bytesread;
+  uint32_t bytesread;
 
   /* Register the file system object to the FatFs module */
   if(f_mount(&USBH_fatfs, "", 0) != FR_OK)
@@ -92,7 +91,7 @@ void MSC_File_Operations(void)
         /* Compare read data with the expected data */
         if((bytesread == bytesWritten))
         {
-          LCD_UsrLog("INFO : FatFs data compare SUCCES");
+          LCD_UsrLog("INFO : FatFs data compare SUCCESS");
           LCD_UsrLog("\n");
         }
         else
@@ -104,6 +103,3 @@ void MSC_File_Operations(void)
     }
   }
 }
-
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

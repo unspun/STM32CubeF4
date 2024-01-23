@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the USB Host CDC application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -79,7 +80,7 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_FS" when using USB Full Speed (FS) Core 
 
 It is possible to fine tune needed USB Host features by modifying defines values in USBH configuration
-file “usbh_conf.h” available under the project includes directory, in a way to fit the application
+file "usbh_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:
   - Level of debug: USBH_DEBUG_LEVEL
                   0: No debug messages
@@ -146,5 +147,5 @@ In order to make the program work, you must do the following :
    - Run the application
  - Run the application
  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the UART Printf example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -25,10 +26,10 @@ The UART outputs a message on the HyperTerminal.
 
 The STM32 Nucleo boards integrate the ST-LINK/V2.1 interfacing with the PC and 
 offering the following capabilities:
-  – Debug and programming port
-  – Virtual com port interface
-  – Mass storage interface
-  – USB power management request for more than 100 mA power
+  â€“ Debug and programming port
+  â€“ Virtual com port interface
+  â€“ Mass storage interface
+  â€“ USB power management request for more than 100 mA power
 
 Once connected to your PC via the ST-LINK port, the STM32 Nucleo board is enumerated 
 as a serial communication port USART2 and listed under Ports (COM & LPT) of Windows
@@ -46,7 +47,7 @@ The communication port USART2 is configured as follows:
     - Hardware flow control disabled (RTS and CTS signals)
     - Receive and transmit enabled
 
-To identify the Nucleo board VCP, you have just to perform the follwing actions on
+To identify the Nucleo board VCP, you have just to perform the following actions on
 your Windows PC: 
     - Click Start, and enter Device Manager into the Search field. Click Device Manager .
     - Double-click Ports (COM & LPT).
@@ -97,7 +98,7 @@ Connectivity, UART, Printf, Baud rate, RS-232, HyperTerminal, full-duplex
     boards and can be easily tailored to any other supported device 
     and development board.
 
-  - For This example to work properly, a 2.2 µF Capacitor must be present on the board in slot C26.
+  - For This example to work properly, a 2.2 ÂµF Capacitor must be present on the board in slot C26.
 
   - STM32F4xx-Nucleo Set-up    
     - Connect the Nucleo board to your PC with a USB cable type A to mini-B 
@@ -112,5 +113,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

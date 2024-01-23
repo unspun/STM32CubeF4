@@ -9,13 +9,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -48,7 +47,7 @@ In-Application Programming, IAP, USART, Binary, flash
 
  - "IAP/IAP_Main/EWARM": contains pre-configured project for EWARM toolchain
  
- - "IAP/IAP_Main/SW4STM32": contains preconfigured project for SW4STM32 toolchain (main program)
+ - "IAP/IAP_Main/STM32CubeIDE": contains preconfigured project for STM32CubeIDE toolchain (main program)
 
  - "IAP/IAP_Main/src": contains the IAP firmware source files
     - IAP/IAP_Main/src/main.c              Main program
@@ -173,11 +172,11 @@ In order to load the IAP code, you have do the following:
       - Load project image: Debug->Start/Stop Debug Session
       - Run program: Debug->Run (F5)
       
-   - System Workbench for STM32: 
-      - Open System Workbench for STM32 toolchain
-      - Browse to the SW4STM32 workspace directory, select the project (.project file in \IAP_Main\SW4STM32 \STM324x9I-EVAL directory).
+   - STM32CubeIDE: 
+      - Open STM32CubeIDE toolchain
+      - Browse to the STM32CubeIDE workspace directory, select the project (.project file in \IAP_Main\STM32CubeIDE \STM324x9I-EVAL directory).
       - Rebuild all project files: Select the project in the "Project explorer" window then click on Project->build project menu.
       - Run program: Run->Debug
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */
