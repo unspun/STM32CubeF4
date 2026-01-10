@@ -652,6 +652,7 @@ function(unspun_add_stm32f4_hal target_name hal_config_folder hal_sources hal_in
                 ${MIDDLEWARE_FOLDER}/Third_Party/FatFs/src/diskio.c
                 ${MIDDLEWARE_FOLDER}/Third_Party/FatFs/src/ff_gen_drv.c
                 ${MIDDLEWARE_FOLDER}/Third_Party/FatFs/src/ff.c
+                ${MIDDLEWARE_FOLDER}/Third_Party/FatFs/src/option/unicode.c
                 )
             target_include_directories(${target_name}
                 PUBLIC
