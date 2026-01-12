@@ -29,14 +29,14 @@
 static volatile DSTATUS Stat = STA_NOINIT;
 
 /* Private function prototypes -----------------------------------------------*/
-DSTATUS PPP_initialize (BYTE);
-DSTATUS PPP_status (BYTE);
-DRESULT PPP_read (BYTE, BYTE*, DWORD, UINT);
+DSTATUS PPP_initialize (FF_BYTE);
+DSTATUS PPP_status (FF_BYTE);
+DRESULT PPP_read (FF_BYTE, FF_BYTE*, FF_DWORD, FF_UINT);
 #if _USE_WRITE == 1
-  DRESULT PPP_write (BYTE, const BYTE*, DWORD, UINT);
+  DRESULT PPP_write (FF_BYTE, const FF_BYTE*, FF_DWORD, FF_UINT);
 #endif /* _USE_WRITE == 1 */
 #if _USE_IOCTL == 1
-  DRESULT PPP_ioctl (BYTE, BYTE, void*);
+  DRESULT PPP_ioctl (FF_BYTE, FF_BYTE, void*);
 #endif  /* _USE_IOCTL == 1 */
 
 const Diskio_drvTypeDef  PPP_Driver =
@@ -60,7 +60,7 @@ const Diskio_drvTypeDef  PPP_Driver =
   * @param  lun : not used
   * @retval DSTATUS: Operation status
   */
-DSTATUS PPP_initialize(BYTE lun)
+DSTATUS PPP_initialize(FF_BYTE lun)
 {
   Stat = STA_NOINIT;
 
@@ -78,7 +78,7 @@ DSTATUS PPP_initialize(BYTE lun)
   * @param  lun : not used
   * @retval DSTATUS: Operation status
   */
-DSTATUS PPP_status(BYTE lun)
+DSTATUS PPP_status(FF_BYTE lun)
 {
   Stat = STA_NOINIT;
 
@@ -98,7 +98,7 @@ DSTATUS PPP_status(BYTE lun)
   * @param  count: Number of sectors to read (1..128)
   * @retval DRESULT: Operation result
   */
-DRESULT PPP_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
+DRESULT PPP_read(FF_BYTE lun, FF_BYTE *buff, FF_DWORD sector, FF_UINT count)
 {
   DRESULT res = RES_OK;
 
@@ -121,7 +121,7 @@ DRESULT PPP_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
   * @retval DRESULT: Operation result
   */
 #if _USE_WRITE == 1
-DRESULT PPP_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
+DRESULT PPP_write(FF_BYTE lun, const FF_BYTE *buff, FF_DWORD sector, FF_UINT count)
 {
   DRESULT res = RES_OK;
 
@@ -144,7 +144,7 @@ DRESULT PPP_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
   * @retval DRESULT: Operation result
   */
 #if _USE_IOCTL == 1
-DRESULT PPP_ioctl(BYTE lun, BYTE cmd, void *buff)
+DRESULT PPP_ioctl(FF_BYTE lun, FF_BYTE cmd, void *buff)
 {
   DRESULT res = RES_ERROR;
   MEDIA_Info_t Info;
@@ -156,22 +156,22 @@ DRESULT PPP_ioctl(BYTE lun, BYTE cmd, void *buff)
     res = RES_OK;
     break;
 
-  /* Get number of sectors on the disk (DWORD) */
+  /* Get number of sectors on the disk (FF_DWORD) */
   case GET_SECTOR_COUNT :
     MEDIA_GetInfo(&Info);
-    *(DWORD*)buff = Info.SectorNbr;
+    *(FF_DWORD*)buff = Info.SectorNbr;
     res = RES_OK;
     break;
 
-  /* Get R/W sector size (WORD) */
+  /* Get R/W sector size (FF_WORD) */
   case GET_SECTOR_SIZE :
-    *(WORD*)buff = Info.SectorSize;
+    *(FF_WORD*)buff = Info.SectorSize;
     res = RES_OK;
     break;
 
-  /* Get erase block size in unit of sector (DWORD) */
+  /* Get erase block size in unit of sector (FF_DWORD) */
   case GET_BLOCK_SIZE :
-    *(DWORD*)buff = Info.BlockSize;
+    *(FF_DWORD*)buff = Info.BlockSize;
     break;
 
   default:

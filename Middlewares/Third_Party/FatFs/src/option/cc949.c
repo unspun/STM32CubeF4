@@ -12,7 +12,7 @@
 
 
 static
-const WCHAR uni2oem[] = {
+const FF_WCHAR uni2oem[] = {
 /*  Unicode - OEM,  Unicode - OEM,  Unicode - OEM,  Unicode - OEM */
 	0x00A1, 0xA2AE, 0x00A4, 0xA2B4, 0x00A7, 0xA1D7, 0x00A8, 0xA1A7,
 	0x00AA, 0xA8A3, 0x00AD, 0xA1A9, 0x00AE, 0xA2E7, 0x00B0, 0xA1C6,
@@ -4280,7 +4280,7 @@ const WCHAR uni2oem[] = {
 };
 
 static
-const WCHAR oem2uni[] = {
+const FF_WCHAR oem2uni[] = {
 /*	OEM - Unicode,  OEM - Unicode,  OEM - Unicode,  OEM - Unicode */
 	0x8141, 0xAC02, 0x8142, 0xAC03, 0x8143, 0xAC05, 0x8144, 0xAC06,
 	0x8145, 0xAC0B, 0x8146, 0xAC0C, 0x8147, 0xAC0D, 0x8148, 0xAC0E,
@@ -8549,13 +8549,13 @@ const WCHAR oem2uni[] = {
 
 
 
-WCHAR ff_convert (	/* Converted code, 0 means conversion error */
-	WCHAR	chr,	/* Character code to be converted */
-	UINT	dir		/* 0: Unicode to OEM code, 1: OEM code to Unicode */
+FF_WCHAR ff_convert (	/* Converted code, 0 means conversion error */
+	FF_WCHAR	chr,	/* Character code to be converted */
+	FF_UINT	dir		/* 0: Unicode to OEM code, 1: OEM code to Unicode */
 )
 {
-	const WCHAR *p;
-	WCHAR c;
+	const FF_WCHAR *p;
+	FF_WCHAR c;
 	int i, n, li, hi;
 
 
@@ -8586,12 +8586,12 @@ WCHAR ff_convert (	/* Converted code, 0 means conversion error */
 
 
 
-WCHAR ff_wtoupper (	/* Returns upper converted character */
-	WCHAR chr		/* Unicode character to be upper converted (BMP only) */
+FF_WCHAR ff_wtoupper (	/* Returns upper converted character */
+	FF_WCHAR chr		/* Unicode character to be upper converted (BMP only) */
 )
 {
 	/* Compressed upper conversion table */
-	static const WCHAR cvt1[] = {	/* U+0000 - U+0FFF */
+	static const FF_WCHAR cvt1[] = {	/* U+0000 - U+0FFF */
 		/* Basic Latin */
 		0x0061,0x031A,
 		/* Latin-1 Supplement */
@@ -8615,7 +8615,7 @@ WCHAR ff_wtoupper (	/* Returns upper converted character */
 
 		0x0000
 	};
-	static const WCHAR cvt2[] = {	/* U+1000 - U+FFFF */
+	static const FF_WCHAR cvt2[] = {	/* U+1000 - U+FFFF */
 		/* Phonetic Extensions */
 		0x1D7D,0x0001,0x2C63,
 		/* Latin Extended Additional */
@@ -8643,8 +8643,8 @@ WCHAR ff_wtoupper (	/* Returns upper converted character */
 
 		0x0000
 	};
-	const WCHAR *p;
-	WCHAR bc, nc, cmd;
+	const FF_WCHAR *p;
+	FF_WCHAR bc, nc, cmd;
 
 
 	p = chr < 0x1000 ? cvt1 : cvt2;

@@ -8,7 +8,7 @@ FRESULT empty_directory (
     char* path      /* Working buffer filled with start directory */
 )
 {
-    UINT i, j;
+    FF_UINT i, j;
     FRESULT fr;
     DIR dir;
     FILINFO fno;

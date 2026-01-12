@@ -212,7 +212,7 @@
 
 ### V1.2.1/20-November-2014 ###
 ===============================
-  + Disk I/O drivers; change count argument type from BYTE to UINT
+  + Disk I/O drivers; change count argument type from FF_BYTE to FF_UINT
 
   + Important note:
       For application code based on previous FatFs version; when moving to R0.10b
