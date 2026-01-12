@@ -30,14 +30,14 @@
 static volatile DSTATUS Stat = STA_NOINIT;
 
 /* Private function prototypes -----------------------------------------------*/
-DSTATUS SRAMDISK_initialize (BYTE);
-DSTATUS SRAMDISK_status (BYTE);
-DRESULT SRAMDISK_read (BYTE, BYTE*, DWORD, UINT);
+DSTATUS SRAMDISK_initialize (FF_BYTE);
+DSTATUS SRAMDISK_status (FF_BYTE);
+DRESULT SRAMDISK_read (FF_BYTE, FF_BYTE*, FF_DWORD, FF_UINT);
 #if _USE_WRITE == 1
-  DRESULT SRAMDISK_write (BYTE, const BYTE*, DWORD, UINT);
+  DRESULT SRAMDISK_write (FF_BYTE, const FF_BYTE*, FF_DWORD, FF_UINT);
 #endif /* _USE_WRITE == 1 */
 #if _USE_IOCTL == 1
-  DRESULT SRAMDISK_ioctl (BYTE, BYTE, void*);
+  DRESULT SRAMDISK_ioctl (FF_BYTE, FF_BYTE, void*);
 #endif /* _USE_IOCTL == 1 */
 
 const Diskio_drvTypeDef SRAMDISK_Driver =
@@ -60,7 +60,7 @@ const Diskio_drvTypeDef SRAMDISK_Driver =
   * @param  lun : not used
   * @retval DSTATUS: Operation status
   */
-DSTATUS SRAMDISK_initialize(BYTE lun)
+DSTATUS SRAMDISK_initialize(FF_BYTE lun)
 {
   Stat = STA_NOINIT;
 
@@ -78,7 +78,7 @@ DSTATUS SRAMDISK_initialize(BYTE lun)
   * @param  lun : not used
   * @retval DSTATUS: Operation status
   */
-DSTATUS SRAMDISK_status(BYTE lun)
+DSTATUS SRAMDISK_status(FF_BYTE lun)
 {
   return Stat;
 }
@@ -91,7 +91,7 @@ DSTATUS SRAMDISK_status(BYTE lun)
   * @param  count: Number of sectors to read (1..128)
   * @retval DRESULT: Operation result
   */
-DRESULT SRAMDISK_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
+DRESULT SRAMDISK_read(FF_BYTE lun, FF_BYTE *buff, FF_DWORD sector, FF_UINT count)
 {
   uint32_t BufferSize = (BLOCK_SIZE * count);
   uint8_t *pMem = (uint8_t *) (SRAM_DEVICE_ADDR + (sector * BLOCK_SIZE));
@@ -113,7 +113,7 @@ DRESULT SRAMDISK_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
   * @retval DRESULT: Operation result
   */
 #if _USE_WRITE == 1
-DRESULT SRAMDISK_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
+DRESULT SRAMDISK_write(FF_BYTE lun, const FF_BYTE *buff, FF_DWORD sector, FF_UINT count)
 {
   uint32_t BufferSize = (BLOCK_SIZE * count);
   uint8_t *pMem = (uint8_t *) (SRAM_DEVICE_ADDR + (sector * BLOCK_SIZE));
@@ -135,7 +135,7 @@ DRESULT SRAMDISK_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
   * @retval DRESULT: Operation result
   */
 #if _USE_IOCTL == 1
-DRESULT SRAMDISK_ioctl(BYTE lun, BYTE cmd, void *buff)
+DRESULT SRAMDISK_ioctl(FF_BYTE lun, FF_BYTE cmd, void *buff)
 {
   DRESULT res = RES_ERROR;
 
@@ -148,21 +148,21 @@ DRESULT SRAMDISK_ioctl(BYTE lun, BYTE cmd, void *buff)
     res = RES_OK;
     break;
 
-  /* Get number of sectors on the disk (DWORD) */
+  /* Get number of sectors on the disk (FF_DWORD) */
   case GET_SECTOR_COUNT :
-    *(DWORD*)buff = SRAM_DEVICE_SIZE / BLOCK_SIZE;
+    *(FF_DWORD*)buff = SRAM_DEVICE_SIZE / BLOCK_SIZE;
     res = RES_OK;
     break;
 
-  /* Get R/W sector size (WORD) */
+  /* Get R/W sector size (FF_WORD) */
   case GET_SECTOR_SIZE :
-    *(WORD*)buff = BLOCK_SIZE;
+    *(FF_WORD*)buff = BLOCK_SIZE;
     res = RES_OK;
     break;
 
-  /* Get erase block size in unit of sector (DWORD) */
+  /* Get erase block size in unit of sector (FF_DWORD) */
   case GET_BLOCK_SIZE :
-    *(DWORD*)buff = 1;
+    *(FF_DWORD*)buff = 1;
     res = RES_OK;
     break;
 

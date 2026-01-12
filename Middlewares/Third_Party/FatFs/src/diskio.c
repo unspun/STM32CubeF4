@@ -34,7 +34,7 @@ extern Disk_drvTypeDef  disk;
   * @retval DSTATUS: Operation status
   */
 DSTATUS disk_status (
-	BYTE pdrv		/* Physical drive number to identify the drive */
+	FF_BYTE pdrv		/* Physical drive number to identify the drive */
 )
 {
   DSTATUS stat;
@@ -49,7 +49,7 @@ DSTATUS disk_status (
   * @retval DSTATUS: Operation status
   */
 DSTATUS disk_initialize (
-	BYTE pdrv				/* Physical drive nmuber to identify the drive */
+	FF_BYTE pdrv				/* Physical drive nmuber to identify the drive */
 )
 {
   DSTATUS stat = RES_OK;
@@ -74,10 +74,10 @@ DSTATUS disk_initialize (
   * @retval DRESULT: Operation result
   */
 DRESULT disk_read (
-	BYTE pdrv,		/* Physical drive nmuber to identify the drive */
-	BYTE *buff,		/* Data buffer to store read data */
-	DWORD sector,	        /* Sector address in LBA */
-	UINT count		/* Number of sectors to read */
+	FF_BYTE pdrv,		/* Physical drive nmuber to identify the drive */
+	FF_BYTE *buff,		/* Data buffer to store read data */
+	FF_DWORD sector,	        /* Sector address in LBA */
+	FF_UINT count		/* Number of sectors to read */
 )
 {
   DRESULT res;
@@ -96,10 +96,10 @@ DRESULT disk_read (
   */
 #if _USE_WRITE == 1
 DRESULT disk_write (
-	BYTE pdrv,		/* Physical drive nmuber to identify the drive */
-	const BYTE *buff,	/* Data to be written */
-	DWORD sector,		/* Sector address in LBA */
-	UINT count        	/* Number of sectors to write */
+	FF_BYTE pdrv,		/* Physical drive nmuber to identify the drive */
+	const FF_BYTE *buff,	/* Data to be written */
+	FF_DWORD sector,		/* Sector address in LBA */
+	FF_UINT count        	/* Number of sectors to write */
 )
 {
   DRESULT res;
@@ -118,8 +118,8 @@ DRESULT disk_write (
   */
 #if _USE_IOCTL == 1
 DRESULT disk_ioctl (
-	BYTE pdrv,		/* Physical drive nmuber (0..) */
-	BYTE cmd,		/* Control code */
+	FF_BYTE pdrv,		/* Physical drive nmuber (0..) */
+	FF_BYTE cmd,		/* Control code */
 	void *buff		/* Buffer to send/receive control data */
 )
 {
@@ -133,9 +133,9 @@ DRESULT disk_ioctl (
 /**
   * @brief  Gets Time from RTC
   * @param  None
-  * @retval Time in DWORD
+  * @retval Time in FF_DWORD
   */
-__weak DWORD get_fattime (void)
+__weak FF_DWORD get_fattime (void)
 {
   return 0;
 }

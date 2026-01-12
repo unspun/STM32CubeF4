@@ -34,7 +34,7 @@
 */
 
 int ff_cre_syncobj (	/* 1:Function succeeded, 0:Could not create the sync object */
-	BYTE vol,			/* Corresponding volume (logical drive number) */
+	FF_BYTE vol,			/* Corresponding volume (logical drive number) */
 	_SYNC_t *sobj		/* Pointer to return the created sync object */
 )
 {
@@ -156,7 +156,7 @@ void ff_rel_grant (
 */
 
 void* ff_memalloc (	/* Returns pointer to the allocated memory block */
-	UINT msize		/* Number of bytes to allocate */
+	FF_UINT msize		/* Number of bytes to allocate */
 )
 {
 	return ff_malloc(msize);	/* Allocate a new memory block with POSIX API */

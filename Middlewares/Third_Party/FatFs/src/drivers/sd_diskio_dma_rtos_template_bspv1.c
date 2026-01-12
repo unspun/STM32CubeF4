@@ -92,15 +92,15 @@ static osMessageQId SDQueueID = NULL;
 static osMessageQueueId_t SDQueueID = NULL;
 #endif
 /* Private function prototypes -----------------------------------------------*/
-static DSTATUS SD_CheckStatus(BYTE lun);
-DSTATUS SD_initialize (BYTE);
-DSTATUS SD_status (BYTE);
-DRESULT SD_read (BYTE, BYTE*, DWORD, UINT);
+static DSTATUS SD_CheckStatus(FF_BYTE lun);
+DSTATUS SD_initialize (FF_BYTE);
+DSTATUS SD_status (FF_BYTE);
+DRESULT SD_read (FF_BYTE, FF_BYTE*, FF_DWORD, FF_UINT);
 #if _USE_WRITE == 1
-DRESULT SD_write (BYTE, const BYTE*, DWORD, UINT);
+DRESULT SD_write (FF_BYTE, const FF_BYTE*, FF_DWORD, FF_UINT);
 #endif /* _USE_WRITE == 1 */
 #if _USE_IOCTL == 1
-DRESULT SD_ioctl (BYTE, BYTE, void*);
+DRESULT SD_ioctl (FF_BYTE, FF_BYTE, void*);
 #endif  /* _USE_IOCTL == 1 */
 
 const Diskio_drvTypeDef  SD_Driver =
@@ -140,7 +140,7 @@ static int SD_CheckStatusWithTimeout(uint32_t timeout)
   return -1;
 }
 
-static DSTATUS SD_CheckStatus(BYTE lun)
+static DSTATUS SD_CheckStatus(FF_BYTE lun)
 {
   Stat = STA_NOINIT;
 
@@ -157,7 +157,7 @@ static DSTATUS SD_CheckStatus(BYTE lun)
 * @param  lun : not used
 * @retval DSTATUS: Operation status
 */
-DSTATUS SD_initialize(BYTE lun)
+DSTATUS SD_initialize(FF_BYTE lun)
 {
   Stat = STA_NOINIT;
   /*
@@ -213,7 +213,7 @@ DSTATUS SD_initialize(BYTE lun)
 * @param  lun : not used
 * @retval DSTATUS: Operation status
 */
-DSTATUS SD_status(BYTE lun)
+DSTATUS SD_status(FF_BYTE lun)
 {
   return SD_CheckStatus(lun);
 }
@@ -227,7 +227,7 @@ DSTATUS SD_status(BYTE lun)
 * @param  count: Number of sectors to read (1..128)
 * @retval DRESULT: Operation result
 */
-DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
+DRESULT SD_read(FF_BYTE lun, FF_BYTE *buff, FF_DWORD sector, FF_UINT count)
 {
   int32_t ret;
   DRESULT res = RES_ERROR;
@@ -380,7 +380,7 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
 * @retval DRESULT: Operation result
 */
 #if _USE_WRITE == 1
-DRESULT SD_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
+DRESULT SD_write(FF_BYTE lun, const FF_BYTE *buff, FF_DWORD sector, FF_UINT count)
 {
   int32_t ret;
   DRESULT res = RES_ERROR;
@@ -539,7 +539,7 @@ DRESULT SD_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
 * @retval DRESULT: Operation result
 */
 #if _USE_IOCTL == 1
-DRESULT SD_ioctl(BYTE lun, BYTE cmd, void *buff)
+DRESULT SD_ioctl(FF_BYTE lun, FF_BYTE cmd, void *buff)
 {
   DRESULT res = RES_ERROR;
   BSP_SD_CardInfo CardInfo;
@@ -553,24 +553,24 @@ DRESULT SD_ioctl(BYTE lun, BYTE cmd, void *buff)
     res = RES_OK;
     break;
 
-    /* Get number of sectors on the disk (DWORD) */
+    /* Get number of sectors on the disk (FF_DWORD) */
   case GET_SECTOR_COUNT :
     BSP_SD_GetCardInfo(&CardInfo);
-    *(DWORD*)buff = CardInfo.LogBlockNbr;
+    *(FF_DWORD*)buff = CardInfo.LogBlockNbr;
     res = RES_OK;
     break;
 
-    /* Get R/W sector size (WORD) */
+    /* Get R/W sector size (FF_WORD) */
   case GET_SECTOR_SIZE :
     BSP_SD_GetCardInfo(&CardInfo);
-    *(WORD*)buff = CardInfo.LogBlockSize;
+    *(FF_WORD*)buff = CardInfo.LogBlockSize;
     res = RES_OK;
     break;
 
-    /* Get erase block size in unit of sector (DWORD) */
+    /* Get erase block size in unit of sector (FF_DWORD) */
   case GET_BLOCK_SIZE :
     BSP_SD_GetCardInfo(&CardInfo);
-    *(DWORD*)buff = CardInfo.LogBlockSize / SD_DEFAULT_BLOCK_SIZE;
+    *(FF_DWORD*)buff = CardInfo.LogBlockSize / SD_DEFAULT_BLOCK_SIZE;
     res = RES_OK;
     break;
 
